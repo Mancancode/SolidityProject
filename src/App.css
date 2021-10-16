@@ -1,5 +1,9 @@
-body{
- background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(163,175,243,1) 0%, rgba(220,182,232,1) 100.2% );
+body {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(163, 175, 243, 1) 0%,
+    rgba(220, 182, 232, 1) 100.2%
+  );
 }
 .mainContainer {
   display: flex;
@@ -13,7 +17,7 @@ body{
   flex-direction: column;
   justify-content: center;
   max-width: 600px;
-  padding-top: 65px; 
+  padding-top: 65px;
 }
 
 .header {
@@ -29,14 +33,14 @@ body{
   padding-bottom: 20px;
   font-size: 25px;
 }
-.textbox{
+.textbox {
   background-color: white;
   height: 150px;
-  border-radius:10px;
-  border-color:50px solid blueviolet; 
+  border-radius: 10px;
+  border-color: 50px solid blueviolet;
 }
-textarea{
-  font-size:30px;
+textarea {
+  font-size: 30px;
 }
 
 .waveButton {
@@ -49,7 +53,7 @@ textarea{
   text-decoration: none;
   background: #40cb90;
   color: #fff;
-   height: 60px;
+  height: 60px;
 }
 
 .waveButton:hover {
@@ -71,12 +75,14 @@ textarea{
   height: 60px;
 }
 
-
-
 .connectButton:hover {
   letter-spacing: 1px;
   box-shadow: 0 10px 12px (0, 0, 0, 0.2);
   height: 70px;
-
 }
 
+.footer {
+  display: flex;
+  flex-direction: row;
+  padding-left: 5px;
+}

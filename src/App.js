@@ -2,14 +2,17 @@ import * as React from "react";
 import { ethers } from "ethers";
 import abi from "./utils/WavePortal.json";
 import './App.css'
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   const [currAccount, setCurrentAccount] = React.useState("")
-  
+
   const [message, setMessage] = React.useState("")
   const contractAddress = "0x22D8A46318917F0211cE1565b9394D029731F4E8"
   const contractABI = abi.abi
-  
+
   const CheckIfWlletIsConected = () => {
 //make sure you have access to windows.ethereum
     const {ethereum} = window;
@@ -34,7 +37,7 @@ export default function App() {
   })
 
   }
-  
+
   const connectWallet = () => {
     const { ethereum } = window;
     if (!ethereum) {
@@ -80,10 +83,10 @@ export default function App() {
             const signer = provider.getSigner()
             const waveportalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-            let waves = await waveportalContract.getAllWaves()    
+            let waves = await waveportalContract.getAllWaves()
 
             let wavesCleaned = []
-            waves.forEach( wave =>{ 
+            waves.forEach( wave =>{
               console.log("wave", wave)
               wavesCleaned.push({
                 address: wave.waver,
@@ -97,7 +100,7 @@ export default function App() {
             setAllWaves(wavesCleaned)
 
             waveportalContract.on("NewWave", (from, timestamp, message) =>{
-              console.log("NewWave event", from, timestamp, message) 
+              console.log("NewWave event", from, timestamp, message)
               setAllWaves(oldArray => [{
                 address: from,
                 timestamp: new Date(timestamp * 1000),
@@ -107,39 +110,36 @@ export default function App() {
 
   }
 
- 
+
 
   React.useEffect(() => {
     CheckIfWlletIsConected ()
   },)
-  
+
   return (
     <div className="mainContainer">
 
       <div className="dataContainer">
         <div className="header">
-       <span> 🤗 </span>Hi send a hug! 
-        </div>
-        
-        <div className="bio">
-        I am ebuka, am 24 and I will love to hug 5 billion persons before i turn 50, Connect your Etheruem wallet and send a hug! Is free.
+       <Header/>
         </div>
 
-        <textarea
+       <Hero/>
+       <textarea
           className="textbox"
           value={message}
           onChange={event => setMessage(event.target.value)}
-           
+
         />
 
-        
+
 
         <button className="waveButton" onClick={wave}>
           Send Hug
         </button>
 
         {currAccount ? null : (
-          <button className="connectButton" onClick={connectWallet}  > 👉 Connect Wallet 👈  
+          <button className="connectButton" onClick={connectWallet}  > 👉 Connect Wallet 👈
           </button>
         )}
 
@@ -152,6 +152,7 @@ export default function App() {
             </div>
           )
         })}
+      <Footer/>
       </div>
     </div>
   );
